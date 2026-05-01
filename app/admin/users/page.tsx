@@ -1,36 +1,42 @@
 "use client";
 
+import { adminController } from "../controller";
+
 import BaseTable from "@/components/base/table";
 import ProtectedRoute from "@/components/protectedRoute/index";
+import { useState, useEffect } from "react";
 
 function UsersPage() {
-  const simpleUsersData = [
-    { id: 1, name: "علی احمدی", email: "ali.ahmadi@example.com", role: "مدیر" },
-    {
-      id: 2,
-      name: "مریم رضایی",
-      email: "maryam.rezaei@example.com",
-      role: "کاربر",
-    },
-    {
-      id: 3,
-      name: "حسین کریمی",
-      email: "hossein.karimi@example.com",
-      role: "کاربر",
-    },
-    {
-      id: 4,
-      name: "زهرا صالحی",
-      email: "zahra.salehi@example.com",
-      role: "مهمان",
-    },
+  const tableHeader = [
+    "Id",
+    "Firstname",
+    "Lastname",
+    "Phone",
+    "Email",
+    "Role",
+    "Created At",
   ];
-  const simpleUserHeaders = ["شناسه", "نام کامل", "آدرس ایمیل", "نقش کاربری"];
+
+  const [tableDataSource, setTableDataSource] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function getUsersData() {
+      const requestResponse = await adminController.getUsersData({
+        per_page: 10,
+        page: 1,
+        search: "",
+      });
+      setTableDataSource(requestResponse);
+    }
+
+    getUsersData();
+  }, []);
 
   return (
     <ProtectedRoute>
       <div className="container">
-        <BaseTable headers={simpleUserHeaders} data={simpleUsersData} />
+        <BaseTable headers={tableHeader} data={tableDataSource} />
       </div>
     </ProtectedRoute>
   );

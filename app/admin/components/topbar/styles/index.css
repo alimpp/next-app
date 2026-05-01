@@ -1,0 +1,11 @@
+.topbar-style {
+  height: 60px;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid #9898981c;
+  padding: 0 15px;
+}
+
+.topbar-style span {
+  font-size: 11px;
+}

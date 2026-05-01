@@ -4,7 +4,9 @@ const baseUrl: string = "https://api.naring.ir";
 
 export const request = async (url: string, method: HttpMethod, body?: any) => {
   const token: string | null = localStorage.getItem("token");
-  const bodyFormat: string = body ? JSON.stringify(body) : "";
+
+  const bodyFormat: string =
+    method !== "GET" && body ? JSON.stringify(body) : "";
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -16,7 +18,7 @@ export const request = async (url: string, method: HttpMethod, body?: any) => {
   try {
     const requestResponse = await fetch(`${baseUrl}/${url}`, {
       method: method,
-      body: bodyFormat,
+      body: method !== "GET" ? bodyFormat : undefined,
       headers,
     });
     return requestResponse.json();

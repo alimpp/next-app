@@ -42,7 +42,7 @@ a {
   text-decoration: none;
 }
 .container {
-  padding: 10px 200px;
+  padding: 70px 200px;
 }
 .mt-5 {
   margin-top: 5;
@@ -107,24 +107,24 @@ a {
 
 @media (max-width: 1400px) {
   .container {
-    padding: 10px 160px;
+    padding: 70px 160px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .container {
+    padding: 70px 120px;
   }
 }
 
 @media (max-width: 1200px) {
   .container {
-    padding: 10px 120px;
+    padding: 70px 90px;
   }
 }
 
 @media (max-width: 1000px) {
   .container {
-    padding: 10px 90px;
-  }
-}
-
-@media (max-width: 900px) {
-  .container {
-    padding: 10px 50px;
+    padding: 70px 30px;
   }
 }

@@ -1,3 +1,5 @@
+import Topbar from "./components/topbar/index";
+
 export default function RootLayout({
   children,
 }: {
@@ -6,7 +8,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <header>Topbar. . .</header>
+        <Topbar />
         <main>{children}</main>
       </body>
     </html>
