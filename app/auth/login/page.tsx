@@ -1,5 +1,7 @@
 "use client";
 
+import { authController } from "../controller";
+
 import "./styles/index.css";
 import BaseInput from "@/components/base/input/index";
 import BaseButton from "@/components/base/button";
@@ -17,7 +19,7 @@ function LoginPage() {
 
   const handleLogin = async () => {
     seLoading(true);
-    console.log({ username, password });
+    authController.login({ username, password });
   };
 
   return (
