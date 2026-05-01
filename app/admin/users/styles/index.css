@@ -1,0 +1,33 @@
+.content {
+  height: 75dvh;
+  overflow-y: scroll;
+}
+
+.table-view {
+  display: flex;
+}
+
+.card-view {
+  display: none;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 300;
+  padding: 5px 0;
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 500;
+  color: gray;
+}
+
+@media (max-width: 900px) {
+  .table-view {
+    display: none;
+  }
+  .card-view {
+    display: flex;
+  }
+}

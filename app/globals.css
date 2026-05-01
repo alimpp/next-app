@@ -42,13 +42,16 @@ a {
   text-decoration: none;
 }
 .container {
-  padding: 70px 200px;
+  padding: 70px 150px;
 }
 .mt-5 {
   margin-top: 5;
 }
 .mt-10 {
   margin-top: 10;
+}
+.mb-10 {
+  margin-bottom: 10;
 }
 .w-full {
   width: 100%;
@@ -107,7 +110,7 @@ a {
 
 @media (max-width: 1400px) {
   .container {
-    padding: 70px 160px;
+    padding: 70px 130px;
   }
 }
 
