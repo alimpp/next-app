@@ -1,0 +1,21 @@
+.base-button {
+  width: 100%;
+  height: 36px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+.loading-style {
+  cursor: not-allowed;
+}
+
+.disabled-style {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

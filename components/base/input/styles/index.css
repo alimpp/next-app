@@ -1,0 +1,31 @@
+.base-input {
+  width: 100%;
+  border: 1px solid #9898981c;
+  outline: none;
+  height: 36px;
+  border-radius: 5px;
+  padding: 5px 5px;
+  background: none;
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 400;
+}
+.base-input::placeholder {
+  font-size: 13px;
+  font-weight: 400;
+}
+label {
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.error-style {
+  border: 1px solid red;
+}
+.text-error {
+  color: red;
+  font-size: 12px;
+  font-weight: 100;
+  padding-top: 5px;
+}

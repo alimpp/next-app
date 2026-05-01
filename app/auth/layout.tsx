@@ -1,5 +1,3 @@
-import "./globals.css";
-
 export default function RootLayout({
   children,
 }: {
@@ -8,7 +6,9 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <main>{children}</main>
+        <div className="w-full h-full flex justify-center align-center">
+          {children}
+        </div>
       </body>
     </html>
   );

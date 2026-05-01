@@ -1,0 +1,13 @@
+.title-style {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.sub-title-style {
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: normal;
+  color: rgba(128, 128, 128, 0.454);
+  padding-top: 5px;
+}
