@@ -8,6 +8,12 @@ import BaseButton from "@/components/base/button";
 import BaseTitleBar from "@/components/base/titleBar";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+interface TFormData {
+  username: string;
+  password: string;
+}
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -17,9 +23,27 @@ function LoginPage() {
 
   const [loading, seLoading] = useState(false);
 
+  const router = useRouter();
+
+  const handleValidation = (formData: TFormData) => {
+    if (!formData.username) setUsernameError("Username is required");
+    else setUsernameError("");
+    if (!formData.password) setPasswordError("Password is required");
+    else setPasswordError("");
+  };
+
   const handleLogin = async () => {
+    const formData = { username, password };
     seLoading(true);
-    authController.login({ username, password });
+    handleValidation(formData);
+    if (username && password) {
+      const response: boolean | undefined = await authController.login({
+        username,
+        password,
+      });
+      if (response) router.push("/admin/users");
+    }
+    seLoading(false);
   };
 
   return (

@@ -1,26 +1,34 @@
 type HttpMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
-const baseUrl: string = "https://naring.ir";
+const baseUrl: string = "https://api.naring.ir";
 
 export const request = async (url: string, method: HttpMethod, body?: any) => {
   const token: string | null = localStorage.getItem("token");
   const bodyFormat: string = body ? JSON.stringify(body) : "";
 
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
   try {
     const requestResponse = await fetch(`${baseUrl}/${url}`, {
       method: method,
       body: bodyFormat,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      headers,
     });
-    return requestResponse;
+    return requestResponse.json();
   } catch (err) {
     console.error("Http Request Error . . .", err);
   }
 };
 
-export const Get = (url: string): Promise<T> => {
+export const Get = (url: string) => {
   return request(url, "GET");
+};
+
+export const Post = (url: string, body: any) => {
+  return request(url, "POST", body);
 };

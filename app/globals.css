@@ -41,6 +41,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.container {
+  padding: 10px 200px;
+}
 .mt-5 {
   margin-top: 5;
 }
@@ -99,5 +102,29 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (max-width: 1400px) {
+  .container {
+    padding: 10px 160px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 10px 120px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    padding: 10px 90px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 10px 50px;
   }
 }
