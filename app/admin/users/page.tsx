@@ -1,4 +1,7 @@
+"use client";
+
 import BaseTable from "@/components/base/table";
+import ProtectedRoute from "@/components/protectedRoute/index";
 
 function UsersPage() {
   const simpleUsersData = [
@@ -25,9 +28,11 @@ function UsersPage() {
   const simpleUserHeaders = ["شناسه", "نام کامل", "آدرس ایمیل", "نقش کاربری"];
 
   return (
-    <div className="container">
-      <BaseTable headers={simpleUserHeaders} data={simpleUsersData} />
-    </div>
+    <ProtectedRoute>
+      <div className="container">
+        <BaseTable headers={simpleUserHeaders} data={simpleUsersData} />
+      </div>
+    </ProtectedRoute>
   );
 }
 
