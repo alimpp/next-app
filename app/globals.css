@@ -63,6 +63,9 @@ a {
 .mb-10 {
   margin-bottom: 10;
 }
+.px-10 {
+  padding: 0 10px;
+}
 .w-full {
   width: 100%;
 }

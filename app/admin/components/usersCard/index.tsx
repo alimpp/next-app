@@ -8,7 +8,7 @@ interface UsersCardProps {
   data: TUsersData;
 }
 
-const UsersCard: React.FC<UsersCardProps> = ({ data, ...props }) => {
+const UsersCard: React.FC<UsersCardProps> = ({ data }) => {
   return (
     <BaseCard>
       <div className="flex flex-column">

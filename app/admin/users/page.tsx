@@ -15,6 +15,7 @@ import Loading from "../components/loading/index";
 import EmptyState from "../components/emptyState";
 
 import { useRouter } from "next/navigation";
+import BasePagination from "@/components/base/pagination";
 
 function UsersPage() {
   const tableHeader = [
@@ -29,52 +30,70 @@ function UsersPage() {
 
   const [tableDataSource, setTableDataSource] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
+
+  const unauthorizedState = () => {
+    router.push("/auth/login");
+    localStorage.removeItem("token");
+  };
 
   useEffect(() => {
     async function getUsersData() {
       setLoading(true);
       const requestResponse = await adminController.getUsersData({
-        per_page: 10,
+        per_page: 5,
         page: 1,
         search: searchValue,
       });
       if (requestResponse.status === 401) {
-        router.push("/auth/login");
-        localStorage.removeItem("token");
+        unauthorizedState();
       } else {
         setTableDataSource(requestResponse ? requestResponse : []);
       }
       setLoading(false);
     }
-
     getUsersData();
   }, [searchValue]);
 
   const handleSearch = (value: string) => {
     setSearchValue(value);
-
+    setPage(1);
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }
-
     debounceTimer.current = setTimeout(async () => {
       setLoading(true);
       const requestResponse = await adminController.getUsersData({
-        per_page: 10,
+        per_page: 5,
         page: 1,
         search: value,
       });
       if (requestResponse.status === 401) {
-        router.push("/auth/login");
-        localStorage.removeItem("token");
+        unauthorizedState();
       } else {
         setTableDataSource(requestResponse ? requestResponse : []);
       }
       setLoading(false);
     }, 0);
+  };
+
+  const getDataWidthPage = async (p: number) => {
+    setPage(p);
+    setLoading(true);
+    const requestResponse = await adminController.getUsersData({
+      per_page: 5,
+      page: p,
+      search: searchValue,
+    });
+    if (requestResponse.status === 401) {
+      unauthorizedState();
+    } else {
+      setTableDataSource(requestResponse ? requestResponse : []);
+    }
+    setLoading(false);
   };
 
   return (
@@ -106,6 +125,13 @@ function UsersPage() {
             </div>
           </div>
         )}
+        <div className="bottom-bar w-full mt-10 flex align-center">
+          <BasePagination
+            currentPage={page}
+            disabledNext={tableDataSource.length < 5}
+            onPageChange={(p) => getDataWidthPage(p)}
+          />
+        </div>
       </div>
     </ProtectedRoute>
   );

@@ -1,6 +1,13 @@
 .content {
-  height: 75dvh;
+  height: 78dvh;
   overflow-y: scroll;
+}
+
+.bottom-bar {
+  height: 80px;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
 }
 
 .content::-webkit-scrollbar {
