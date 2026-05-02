@@ -86,7 +86,7 @@ function UsersPage() {
     }, 0);
   };
 
-  const getDataWidthPage = async (p: number) => {
+  const getDataWithPage = async (p: number) => {
     setPage(p);
     setLoading(true);
     const requestResponse = await adminController.getUsersData({
@@ -135,7 +135,7 @@ function UsersPage() {
           <BasePagination
             currentPage={page}
             disabledNext={tableDataSource.length < 5}
-            onPageChange={(p) => getDataWidthPage(p)}
+            onPageChange={(p) => getDataWithPage(p)}
           />
         </div>
       </div>
