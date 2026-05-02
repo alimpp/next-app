@@ -12,6 +12,8 @@ import { type TUsersData } from "../types";
 
 import UsersCard from "../components/usersCard";
 import Loading from "../components/loading/index";
+import EmptyState from "../components/emptyState";
+
 import { useRouter } from "next/navigation";
 
 function UsersPage() {
@@ -86,20 +88,24 @@ function UsersPage() {
             onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
-        <div className="content fade-animation">
-          <div className="table-view ">
-            <BaseCard>
-              <BaseTable headers={tableHeader} data={tableDataSource} />
-            </BaseCard>
+        {tableDataSource.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <div className="content fade-animation">
+            <div className="table-view ">
+              <BaseCard>
+                <BaseTable headers={tableHeader} data={tableDataSource} />
+              </BaseCard>
+            </div>
+            <div className="card-view flex flex-column">
+              {tableDataSource.map((item: TUsersData, itemIndex) => (
+                <div className="mt-10" key={itemIndex}>
+                  <UsersCard data={item} />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="card-view flex flex-column">
-            {tableDataSource.map((item: TUsersData, itemIndex) => (
-              <div className="mt-10" key={itemIndex}>
-                <UsersCard data={item} />
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </ProtectedRoute>
   );

@@ -51,6 +51,7 @@ a {
   text-decoration: none;
 }
 .container {
+  overflow: hidden;
   padding: 70px 150px;
 }
 .mt-5 {
