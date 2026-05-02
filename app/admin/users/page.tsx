@@ -1,14 +1,18 @@
 "use client";
+
 import "./styles/index.css";
+
+import { useState, useEffect, useRef } from "react";
+
+import { type TUsersData } from "../types";
+
 import { adminController } from "../controller";
 
 import BaseTable from "@/components/base/table";
 import BaseCard from "@/components/base/card";
 import BaseInput from "@/components/base/input";
-import ProtectedRoute from "@/components/protectedRoute/index";
-import { useState, useEffect, useRef } from "react";
 
-import { type TUsersData } from "../types";
+import ProtectedRoute from "@/components/protectedRoute/index";
 
 import UsersCard from "../components/usersCard";
 import Loading from "../components/loading/index";
@@ -32,7 +36,9 @@ function UsersPage() {
   const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+
   const router = useRouter();
 
   const unauthorizedState = () => {

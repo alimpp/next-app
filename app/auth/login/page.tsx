@@ -1,14 +1,16 @@
 "use client";
+import "./styles/index.css";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { authController } from "../controller";
 
-import "./styles/index.css";
 import BaseInput from "@/components/base/input/index";
 import BaseButton from "@/components/base/button";
 import BaseTitleBar from "@/components/base/titleBar";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Alert from "../components/alert";
 
 interface TFormData {
   username: string;
@@ -22,6 +24,7 @@ function LoginPage() {
   const [passwordError, setPasswordError] = useState("");
 
   const [loading, seLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
 
@@ -42,6 +45,7 @@ function LoginPage() {
         password,
       });
       if (response) router.push("/admin/users");
+      else setErrorMessage("Username | Password Not valid");
     }
     seLoading(false);
   };
@@ -69,6 +73,14 @@ function LoginPage() {
       <BaseButton onClick={handleLogin} loading={loading} className="mt-10">
         Login
       </BaseButton>
+
+      {errorMessage ? (
+        <div className="mt-10">
+          <Alert>{errorMessage}</Alert>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

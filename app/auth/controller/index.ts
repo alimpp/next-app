@@ -8,6 +8,9 @@ export const authController = {
         "v2/auth/login-via-password",
         bodyRequest,
       );
+      if (!requestResponse.success) {
+        return false;
+      }
       if (requestResponse.data) {
         localStorage.setItem("token", requestResponse.data);
         return true;

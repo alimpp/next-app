@@ -21,7 +21,12 @@ export const request = async (url: string, method: HttpMethod, body?: any) => {
       body: method !== "GET" ? bodyFormat : undefined,
       headers,
     });
-    return requestResponse.json();
+    if (requestResponse.status === 422 || requestResponse.status === 401) {
+      return { success: false };
+    }
+    if (requestResponse.status === 200) {
+      return requestResponse.json();
+    }
   } catch (err) {
     console.error("Http Request Error . . .", err);
   }
