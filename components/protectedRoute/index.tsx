@@ -1,4 +1,5 @@
 "use client";
+import Loading from "../base/loading";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -17,12 +18,14 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     if (!token) {
       router.push("/auth/login");
     } else {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
   }, [router]);
 
   if (isLoading) {
-    return null;
+    return <Loading />;
   }
 
   return <>{children}</>;

@@ -1,5 +1,6 @@
 .base-card {
-  background-color: #161515;
+  background-color: #0e0e0e;
+  border: 1px solid #98989811;
   border-radius: 10px;
   padding: 10px 10px;
 }

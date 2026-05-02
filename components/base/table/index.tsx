@@ -15,14 +15,6 @@ const BaseTable: React.FC<SimpleTableProps> = ({
   data,
   className = "",
 }) => {
-  if (!data || data.length === 0) {
-    return (
-      <div className="w-full h-full flex align-center justify-center">
-        <p>NO DATA TABLE IS EMPTY . . .</p>
-      </div>
-    );
-  }
-
   const firstRowKeys = data[0] ? Object.keys(data[0]) : [];
   const columnKeys = headers.length > 0 ? firstRowKeys : [];
 

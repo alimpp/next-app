@@ -3,6 +3,10 @@
   overflow-y: scroll;
 }
 
+.content::-webkit-scrollbar {
+  display: none;
+}
+
 .table-view {
   display: flex;
 }

@@ -1,0 +1,20 @@
+.loading-content {
+  width: 100%;
+  height: 100dvh;
+  position: fixed;
+  z-index: 100;
+  background: #000;
+}
+
+.loading {
+  animation: 1s loading infinite;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
