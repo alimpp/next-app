@@ -7,9 +7,9 @@ export const adminController = {
       const requestResponse = await Get(
         `v1/admin/users?per_page=${paramsRequest.per_page}&page=${paramsRequest.page}&search=${paramsRequest.search}`,
       );
+
       if (requestResponse.data) {
         const users = requestResponse.data?.users?.data;
-
         return users
           ? users.map((user: any) => {
               return {
@@ -24,6 +24,7 @@ export const adminController = {
             })
           : [];
       }
+      return { status: 401, message: "unauthorized" };
     } catch (err) {
       console.log(err);
     }

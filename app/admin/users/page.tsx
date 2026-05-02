@@ -12,22 +12,24 @@ import { type TUsersData } from "../types";
 
 import UsersCard from "../components/usersCard";
 import Loading from "../components/loading/index";
+import { useRouter } from "next/navigation";
 
 function UsersPage() {
   const tableHeader = [
     "Id",
+    "Created At",
     "Firstname",
     "Lastname",
     "Phone",
     "Email",
     "Role",
-    "Created At",
   ];
 
   const [tableDataSource, setTableDataSource] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(false);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     async function getUsersData() {
@@ -37,7 +39,12 @@ function UsersPage() {
         page: 1,
         search: searchValue,
       });
-      setTableDataSource(requestResponse);
+      if (requestResponse.status === 401) {
+        router.push("/auth/login");
+        localStorage.removeItem("token");
+      } else {
+        setTableDataSource(requestResponse ? requestResponse : []);
+      }
       setLoading(false);
     }
 
@@ -58,7 +65,12 @@ function UsersPage() {
         page: 1,
         search: value,
       });
-      setTableDataSource(requestResponse);
+      if (requestResponse.status === 401) {
+        router.push("/auth/login");
+        localStorage.removeItem("token");
+      } else {
+        setTableDataSource(requestResponse ? requestResponse : []);
+      }
       setLoading(false);
     }, 0);
   };
